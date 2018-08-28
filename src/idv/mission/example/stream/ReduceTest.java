@@ -1,6 +1,9 @@
 package idv.mission.example.stream;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ReduceTest {
@@ -21,6 +24,17 @@ public class ReduceTest {
 
         int sum = Stream.of(1, 2, 3).reduce(1, (tempSum, element) -> tempSum + element);
         System.out.println("sum = " + sum);
-
+        
+        String[] strArray = {"1", "2", "3"};
+        String result = Stream.of(strArray).reduce("", (tempResult, element) -> tempResult + "'" + element + "',");
+        System.out.println("result = " + result);
+        
+        result = Stream.of(strArray).map(str -> "'" + str + "'").collect(Collectors.joining(", "));
+        System.out.println("result = " + result);
+        
+        List<String> defaultOrder = Arrays.asList(new String[]{"package_name", "contract_period", "monthly_fee"});
+        //defaultOrder = defaultOrder.stream().filter(str -> !str.equals("package_name")).collect(Collectors.toList());
+        String combinedStr = defaultOrder.stream().map(str -> "'" + str + "'").collect(Collectors.joining(", "));
+        System.out.println(combinedStr);
     }
 }

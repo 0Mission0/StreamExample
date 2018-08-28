@@ -1,4 +1,4 @@
-package idv.mission.example.stream;
+package com.insightfullogic.java8.examples.chapter3;
 
 import java.util.stream.Stream;
 
